@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Protection | FinLit Bharat</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background-color: #fefefe;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #2e8b57;
+        }
+
+        .quiz {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h4 {
+            margin-bottom: 10px;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #246b45;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2e8b57;
+            color: white;
+        }
+    </style>
+    <div id="google_translate_element" style="display: none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        // Retrieve the stored language preference from localStorage
+        const selectedLang = localStorage.getItem("selectedLanguage") || 'en'; // Default to English if no language is stored
+        
+        // Initialize the Google Translate widget
+        new google.translate.TranslateElement({ 
+            pageLanguage: 'en', // This is the original language of your HTML content
+            includedLanguages: 'en,hi,te,ta,gu,kn,bn,mr,ml', // Languages available for translation
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+            autoDisplay: false // Important: Prevents the default Google Translate banner from showing
+        }, 'google_translate_element');
+        
+        // After the widget initializes, programmatically set the selected language
+        // This uses a short interval to wait for the Google Translate dropdown to be ready in the DOM
+        const translateInterval = setInterval(() => {
+            const selectElement = document.querySelector("select.goog-te-combo");
+            if (selectElement) {
+                selectElement.value = selectedLang;
+                // Dispatch a change event to trigger the translation
+                selectElement.dispatchEvent(new Event("change"));
+                clearInterval(translateInterval); // Stop trying after it's set
+            }
+        }, 100); // Check every 100ms until the select element is ready
+    }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<html lang="en">
+</head>
+<body>
+
+    <header>
+        <h1>Understanding Insurance Protection</h1>
+    </header>
+
+    <div class="container">
+        <h2>Article</h2>
+        <p>
+            Insurance is a way to protect yourself and your family from financial losses due to unexpected events. You pay a small amount regularly (premium), and in return, the insurance company promises to pay a larger sum if something unfortunate happens, like an illness, accident, or damage to your crops or property.
+        </p>
+        <p>
+            There are different types of insurance. **Life insurance** provides financial security to your family if something happens to you. **Health insurance** covers medical expenses if you or your family members get sick or injured. For farmers, **crop insurance** (like Pradhan Mantri Fasal Bima Yojana) is crucial to protect against losses due to natural calamities. **Cattle insurance** helps if your livestock falls ill or dies.
+        </p>
+        <p>
+            It is important to understand the terms and conditions of any insurance policy before buying it. Ask questions about what is covered, what is not, and how to claim the insurance amount. Having adequate insurance coverage provides peace of mind and safeguards your financial well-being, especially in rural areas where incomes can be unpredictable.
+        </p>
+
+        <div class="quiz">
+            <h2>Quiz</h2>
+
+            <form id="quizForm">
+                <div class="question">
+                    <h4>1. What is the main purpose of insurance?</h4>
+                    <label><input type="radio" name="q1" value="a"> To buy new things</label>
+                    <label><input type="radio" name="q1" value="b"> To protect against financial losses from unexpected events</label>
+                    <label><input type="radio" name="q1" value="c"> To get free gifts</label>
+                </div>
+
+                <div class="question">
+                    <h4>2. Which type of insurance protects farmers from crop losses due to natural calamities?</h4>
+                    <label><input type="radio" name="q2" value="a"> Life insurance</label>
+                    <label><input type="radio" name="q2" value="b"> Health insurance</label>
+                    <label><input type="radio" name="q2" value="c"> Crop insurance</label>
+                </div>
+
+                <div class="question">
+                    <h4>3. What is a "premium" in insurance?</h4>
+                    <label><input type="radio" name="q3" value="a"> A big lump sum paid once</label>
+                    <label><input type="radio" name="q3" value="b"> The small amount you pay regularly for insurance</label>
+                    <label><input type="radio" name="q3" value="c"> The money you get back</label>
+                </div>
+
+                <div class="question">
+                    <h4>4. What does health insurance cover?</h4>
+                    <label><input type="radio" name="q4" value="a"> Only accidents</label>
+                    <label><input type="radio" name="q4" value="b"> Medical expenses if you get sick or injured</label>
+                    <label><input type="radio" name="q4" value="c"> Daily food costs</label>
+                </div>
+
+                <div class="question">
+                    <h4>5. Why is it important to understand insurance terms and conditions?</h4>
+                    <label><input type="radio" name="q5" value="a"> So you can teach others</label>
+                    <label><input type="radio" name="q5" value="b"> To know what is covered and how to claim</label>
+                    <label><input type="radio" name="q5" value="c"> To make the agent happy</label>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="checkAnswers()">Submit Quiz</button>
+                <div class="result" id="result"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 FinLit Bharat. Empowering Rural India Financially.</p>
+    </footer>
+
+    <script>
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'b',
+                q4: 'b',
+                q5: 'b'
+            };
+            let score = 0;
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                }
+            }
+            document.getElementById("result").innerText = `You scored ${score} out of 5!`;
+        }
+    </script>
+</body>
+</html>

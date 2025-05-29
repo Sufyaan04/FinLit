@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM & Digital Banking | FinLit Bharat</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background-color: #fefefe;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #2e8b57;
+        }
+
+        .quiz {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h4 {
+            margin-bottom: 10px;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #246b45;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2e8b57;
+            color: white;
+        }
+    </style>
+    <div id="google_translate_element" style="display: none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        // Retrieve the stored language preference from localStorage
+        const selectedLang = localStorage.getItem("selectedLanguage") || 'en'; // Default to English if no language is stored
+        
+        // Initialize the Google Translate widget
+        new google.translate.TranslateElement({ 
+            pageLanguage: 'en', // This is the original language of your HTML content
+            includedLanguages: 'en,hi,te,ta,gu,kn,bn,mr,ml', // Languages available for translation
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+            autoDisplay: false // Important: Prevents the default Google Translate banner from showing
+        }, 'google_translate_element');
+        
+        // After the widget initializes, programmatically set the selected language
+        // This uses a short interval to wait for the Google Translate dropdown to be ready in the DOM
+        const translateInterval = setInterval(() => {
+            const selectElement = document.querySelector("select.goog-te-combo");
+            if (selectElement) {
+                selectElement.value = selectedLang;
+                // Dispatch a change event to trigger the translation
+                selectElement.dispatchEvent(new Event("change"));
+                clearInterval(translateInterval); // Stop trying after it's set
+            }
+        }, 100); // Check every 100ms until the select element is ready
+    }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<html lang="en">
+</head>
+<body>
+
+    <header>
+        <h1>ATM & Digital Banking</h1>
+    </header>
+
+    <div class="container">
+        <h2>Article</h2>
+        <p>
+            ATMs (Automated Teller Machines) allow you to withdraw cash, check your balance, and sometimes even deposit money without going inside the bank. To use an ATM, you need your ATM card and your secret PIN (Personal Identification Number). Always keep your PIN private and never share it with anyone.
+        </p>
+        <p>
+              To withdraw money from an ATM:   Insert your card, enter your PIN, select "Withdrawal," choose "Savings" or "Current" account, enter the amount, and collect your cash and receipt. Always count your cash before leaving the ATM.
+        </p>
+        <p>
+              Digital banking   refers to using mobile apps or internet banking for financial transactions. UPI (Unified Payments Interface) is a popular digital payment system in India that allows instant money transfers directly from your bank account using a mobile app. Other methods include mobile wallets and online bill payments. Digital banking is convenient and fast, but always be careful about scams and only use trusted apps and websites. Never share your OTP (One Time Password) or PIN with anyone.
+        </p>
+
+        <div class="quiz">
+            <h2>Quiz</h2>
+
+            <form id="quizForm">
+                <div class="question">
+                    <h4>1. What do you need to use an ATM?</h4>
+                    <label><input type="radio" name="q1" value="a"> A phone number</label>
+                    <label><input type="radio" name="q1" value="b"> Your ATM card and PIN</label>
+                    <label><input type="radio" name="q1" value="c"> A special key</label>
+                </div>
+
+                <div class="question">
+                    <h4>2. What should you NEVER share with anyone regarding your ATM?</h4>
+                    <label><input type="radio" name="q2" value="a"> Your bank's name</label>
+                    <label><input type="radio" name="q2" value="b"> Your ATM card number</label>
+                    <label><input type="radio" name="q2" value="c"> Your secret PIN</label>
+                </div>
+
+                <div class="question">
+                    <h4>3. What is UPI used for?</h4>
+                    <label><input type="radio" name="q3" value="a"> Making phone calls</label>
+                    <label><input type="radio" name="q3" value="b"> Instant money transfers using a mobile app</label>
+                    <label><input type="radio" name="q3" value="c"> Sending messages</label>
+                </div>
+
+                <div class="question">
+                    <h4>4. Is it safe to share your OTP (One Time Password) with anyone?</h4>
+                    <label><input type="radio" name="q4" value="a"> Yes, always</label>
+                    <label><input type="radio" name="q4" value="b"> Only with family</label>
+                    <label><input type="radio" name="q4" value="c"> No, never</label>
+                </div>
+
+                <div class="question">
+                    <h4>5. What is one benefit of digital banking?</h4>
+                    <label><input type="radio" name="q5" value="a"> It is very slow</label>
+                    <label><input type="radio" name="q5" value="b"> It is convenient and fast</label>
+                    <label><input type="radio" name="q5" value="c"> It requires visiting the bank branch</label>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="checkAnswers()">Submit Quiz</button>
+                <div class="result" id="result"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 FinLit Bharat. Empowering Rural India Financially.</p>
+    </footer>
+
+    <script>
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'c',
+                q3: 'b',
+                q4: 'c',
+                q5: 'b'
+            };
+            let score = 0;
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                }
+            }
+            document.getElementById("result").innerText = `You scored ${score} out of 5!`;
+        }
+    </script>
+</body>
+</html>

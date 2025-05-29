@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Choose Your Language | FinLit Bharat</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #2e8b57;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #languageOutput {
+      font-size: 24px;
+      margin-top: 20px;
+      color: #2e8b57;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to FinLit Bharat</h1>
+  <h3>Say your preferred language to continue</h3>
+
+  <button onclick="startListening()">🎤 Speak Language</button>
+  <div id="languageOutput"></div>
+
+  <div id="google_translate_element" style="margin-top: 40px;"></div>
+
+  <script>
+    const languageMap = {
+      hindi: "hi",
+      english: "en",
+      gujarati: "gu",
+      tamil: "ta",
+      telugu: "te",
+      bengali: "bn",
+      marathi: "mr",
+      kannada: "kn",
+      punjabi: "pa"
+    };
+
+    function startListening() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = "en-IN";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.start();
+
+      recognition.onresult = function (event) {
+        const spoken = event.results[0][0].transcript.toLowerCase().trim();
+        document.getElementById("languageOutput").innerText = `You said: ${spoken}`;
+
+        const langCode = languageMap[spoken];
+        if (langCode) {
+          setLanguage(langCode);
+        } else {
+          alert("Sorry, language not recognized. Please try again.");
+        }
+      };
+    }
+
+    function setLanguage(langCode) {
+      const translateScript = document.createElement("script");
+      translateScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      document.body.appendChild(translateScript);
+
+      window.googleTranslateElementInit = function () {
+        new google.translate.TranslateElement({
+          pageLanguage: "en",
+          includedLanguages: Object.values(languageMap).join(","),
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, "google_translate_element");
+
+        // Auto-switch language after short delay
+        setTimeout(() => {
+          const iframe = document.querySelector('iframe');
+          if (!iframe) return;
+
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          const langOptions = doc.querySelectorAll('.goog-te-menu2-item span.text');
+          langOptions.forEach((el) => {
+            if (el.innerText.toLowerCase().includes(langCode)) {
+              el.click();
+            }
+          });
+        }, 2000);
+      };
+    }
+  </script>
+</body>
+</html>

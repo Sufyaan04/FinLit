@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Your Language</title>
+
+    <div id="google_translate_element" style="display: none;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #fff;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 1rem 0;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 6px;
+        }
+
+        select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            margin: 1rem 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>🗣️ Select Your Language</h2>
+        <p><strong>Option 1:</strong> Choose from the list</p>
+        <select id="manualLanguage">
+            <option value="">-- Select Language --</option>
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="te">Telugu</option>
+            <option value="ta">Tamil</option>
+            <option value="gu">Gujarati</option>
+            <option value="kn">Kannada</option>
+            <option value="bn">Bengali</option>
+            <option value="mr">Marathi</option>
+            <option value="ml">Malayalam</option>
+        </select>
+        <br />
+        <button onclick="proceedWithLanguage('manual')">Continue</button>
+
+        <hr />
+
+        <p><strong>Option 2:</strong> 🎤 Speak your language</p>
+        <button onclick="startListening()">🎤 Tap to Speak</button>
+        <p id="voiceResult" style="margin-top: 10px;"></p>
+        <button id="voiceContinueBtn" onclick="proceedWithLanguage('voice')" style="display: none;">Continue</button>
+    </div>
+
+    <script>
+        let selectedLanguage = '';
+
+        const langMap = {
+            english: 'en',
+            hindi: 'hi',
+            telugu: 'te',
+            tamil: 'ta',
+            gujarati: 'gu',
+            kannada: 'kn',
+            bengali: 'bn',
+            marathi: 'mr',
+            malayalam: 'ml'
+        };
+
+        function startListening() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US'; // Adjust if you expect other input languages for spoken commands
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.onresult = function(event) {
+                const spokenText = event.results[0][0].transcript.toLowerCase();
+                document.getElementById('voiceResult').textContent = `You said: ${spokenText}`;
+
+                selectedLanguage = langMap[spokenText] || '';
+                if (!selectedLanguage) {
+                    alert("Sorry, couldn't detect language. Please try again or use manual option.");
+                    return;
+                }
+                
+                // Automatically translate the website as soon as language is detected
+                translatePage(selectedLanguage); 
+            };
+
+            recognition.onerror = function(event) {
+                alert("Error: " + event.error);
+            };
+
+            recognition.start();
+        }
+
+        function proceedWithLanguage(method) {
+            if (method === 'manual') {
+                const manualLang = document.getElementById('manualLanguage').value;
+                if (!manualLang) {
+                    alert("Please select a language.");
+                    return;
+                }
+                selectedLanguage = manualLang;
+            } else if (method === 'voice' && !selectedLanguage) {
+                // Prevent proceeding if voice input didn't detect a language yet
+                alert("Voice input did not detect a language. Please try speaking again.");
+                return;
+            }
+            // Trigger translation regardless of method (manual or voice)
+            translatePage(selectedLanguage);
+        }
+
+        function translatePage(langCode) {
+            // Store the chosen language in localStorage for other pages to use
+            localStorage.setItem("selectedLanguage", langCode);
+
+            // Find the hidden Google Translate dropdown and trigger its change event
+            const select = document.querySelector("select.goog-te-combo");
+            if (select) {
+                select.value = langCode;
+                select.dispatchEvent(new Event("change"));
+            }
+
+            // Redirect to home.html after a short delay
+            setTimeout(() => {
+                window.location.href = "home.html";
+            }, 2000); // 2-second delay
+        }
+    </script>
+</body>
+</html>

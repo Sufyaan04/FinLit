@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Savings | FinLit Bharat</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background-color: #fefefe;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2e8b57;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #2e8b57;
+        }
+
+        .quiz {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question h4 {
+            margin-bottom: 10px;
+        }
+
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #246b45;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2e8b57;
+            color: white;
+        }
+    </style>
+    <div id="google_translate_element" style="display: none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        const selectedLang = localStorage.getItem("selectedLanguage") || 'en'; 
+        
+        new google.translate.TranslateElement({ 
+            pageLanguage: 'en', 
+            includedLanguages: 'en,hi,te,ta,gu,kn,bn,mr,ml',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+            autoDisplay: false 
+        }, 'google_translate_element');
+        
+        const translateInterval = setInterval(() => {
+            const selectElement = document.querySelector("select.goog-te-combo");
+            if (selectElement) {
+                selectElement.value = selectedLang;
+                selectElement.dispatchEvent(new Event("change"));
+                clearInterval(translateInterval); 
+            }
+        }, 100);
+    }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<html lang="en">
+</head>
+<body>
+
+    <header>
+        <h1>Smart Savings Strategies</h1>
+    </header>
+
+    <div class="container">
+        <h2>Article</h2>
+        <p>
+            Saving money is important for a secure future and to handle unexpected expenses. Smart savings means putting aside money regularly, even small amounts. You can save by reducing unnecessary spending, making a budget, and setting clear financial goals.
+        </p>
+        <p>
+            The government also offers various savings schemes like the Public Provident Fund (PPF), National Savings Certificates (NSC), and Sukanya Samriddhi Yojana for girls, which provide good interest rates and tax benefits. Banks offer Fixed Deposits (FDs) and Recurring Deposits (RDs) where your money grows over time with interest.
+        </p>
+        <p>
+            It's wise to open a separate savings account and link it to your primary bank account for easier transfers. Consider automatic deductions to your savings account so you save without thinking about it. Teach your family about the importance of saving and make it a collective habit. Saving protects you during difficult times and helps you achieve your dreams, like buying land, funding education, or starting a small business.
+        </p>
+
+        <div class="quiz">
+            <h2>Quiz</h2>
+
+            <form id="quizForm">
+                <div class="question">
+                    <h4>1. What is a key benefit of smart savings?</h4>
+                    <label><input type="radio" name="q1" value="a"> To spend more money</label>
+                    <label><input type="radio" name="q1" value="b"> To secure your future and handle expenses</label>
+                    <label><input type="radio" name="q1" value="c"> To impress friends</label>
+                </div>
+
+                <div class="question">
+                    <h4>2. Which of these is a government savings scheme?</h4>
+                    <label><input type="radio" name="q2" value="a"> Gold buying</label>
+                    <label><input type="radio" name="q2" value="b"> Public Provident Fund (PPF)</label>
+                    <label><input type="radio" name="q2" value="c"> Buying vegetables</label>
+                </div>
+
+                <div class="question">
+                    <h4>3. What can help you save money regularly?</h4>
+                    <label><input type="radio" name="q3" value="a"> Buying new clothes every week</label>
+                    <label><input type="radio" name="q3" value="b"> Making a budget and sticking to it</label>
+                    <label><input type="radio" name="q3" value="c"> Eating out daily</label>
+                </div>
+
+                <div class="question">
+                    <h4>4. What is a Fixed Deposit (FD) offered by banks for?</h4>
+                    <label><input type="radio" name="q4" value="a"> Instant spending</label>
+                    <label><input type="radio" name="q4" value="b"> Growing your money over time with interest</label>
+                    <label><input type="radio" name="q4" value="c"> Paying bills automatically</label>
+                </div>
+
+                <div class="question">
+                    <h4>5. Why should you teach your family about saving?</h4>
+                    <label><input type="radio" name="q5" value="a"> To make them rich quickly</label>
+                    <label><input type="radio" name="q5" value="b"> To make saving a collective habit</label>
+                    <label><input type="radio" name="q5" value="c"> To stop them from talking to friends</label>
+                </div>
+
+                <button type="button" class="submit-btn" onclick="checkAnswers()">Submit Quiz</button>
+                <div class="result" id="result"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 FinLit Bharat. Empowering Rural India Financially.</p>
+    </footer>
+
+    <script>
+        function checkAnswers() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'b',
+                q5: 'b'
+            };
+            let score = 0;
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selected && selected.value === answers[`q${i}`]) {
+                    score++;
+                }
+            }
+            document.getElementById("result").innerText = `You scored ${score} out of 5!`;
+        }
+    </script>
+</body>
+</html>

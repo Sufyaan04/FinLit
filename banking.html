@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banking Process | FinLit Bharat</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-color: #fefefe;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2e8b57;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 30px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #2e8b57;
+    }
+
+    .quiz {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question h4 {
+      margin-bottom: 10px;
+    }
+
+    .question label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      background-color: #2e8b57;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #246b45;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #2e8b57;
+      color: white;
+    }
+  </style>
+  <div id="google_translate_element" style="display: none;"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        // Retrieve the stored language preference from localStorage
+        const selectedLang = localStorage.getItem("selectedLanguage") || 'en'; // Default to English if no language is stored
+        
+        // Initialize the Google Translate widget
+        new google.translate.TranslateElement({ 
+            pageLanguage: 'en', // This is the original language of your HTML content
+            includedLanguages: 'en,hi,te,ta,gu,kn,bn,mr,ml', // Languages available for translation
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE, 
+            autoDisplay: false // Important: Prevents the default Google Translate banner from showing
+        }, 'google_translate_element');
+        
+        // After the widget initializes, programmatically set the selected language
+        // This uses a short interval to wait for the Google Translate dropdown to be ready in the DOM
+        const translateInterval = setInterval(() => {
+            const selectElement = document.querySelector("select.goog-te-combo");
+            if (selectElement) {
+                selectElement.value = selectedLang;
+                // Dispatch a change event to trigger the translation
+                selectElement.dispatchEvent(new Event("change"));
+                clearInterval(translateInterval); // Stop trying after it's set
+            }
+        }, 100); // Check every 100ms until the select element is ready
+    }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<html lang="en">
+</head>
+
+<body>
+  <header>
+    <h1>Understanding the Banking Process</h1>
+  </header>
+  <div class="container">
+    <h2>Article</h2>
+    <p> Banking is a process that helps people store, save, and manage their money safely. You can open a bank account
+      by visiting a nearby bank with your Aadhaar card and photo. Once your account is active, you will get an ATM card
+      and can use it to withdraw cash anytime... </p>
+    <p> Banks also help you get loans, save money in fixed deposits, and use mobile apps to send or receive money. In
+      rural areas, banks also work through Business Correspondents (Bank Mitras) who help people access services. </p>
+    <!-- Add more relevant points up to 500–1000 words -->
+    <div class="quiz">
+      <h2>Quiz</h2>
+      <form id="quizForm">
+        <div class="question">
+          <h4>1. What document is essential to open a bank account?</h4> <label><input type="radio" name="q1" value="a">
+            Ration Card</label> <label><input type="radio" name="q1" value="b"> PAN Card</label> <label><input
+              type="radio" name="q1" value="c"> Aadhaar Card</label>
+        </div>
+        <div class="question">
+          <h4>2. What is an ATM card used for?</h4> <label><input type="radio" name="q2" value="a"> Shopping
+            only</label> <label><input type="radio" name="q2" value="b"> Withdrawing money</label> <label><input
+              type="radio" name="q2" value="c"> Voting</label>
+        </div>
+        <div class="question">
+          <h4>3. Who are Bank Mitras?</h4> <label><input type="radio" name="q3" value="a"> Security Guards</label>
+          <label><input type="radio" name="q3" value="b"> Banking Helpers in Villages</label> <label><input type="radio"
+              name="q3" value="c"> ATM repairmen</label>
+        </div>
+        <div class="question">
+          <h4>4. Which one of these is a saving option?</h4> <label><input type="radio" name="q4" value="a"> Fixed
+            Deposit</label> <label><input type="radio" name="q4" value="b"> Lottery</label> <label><input type="radio"
+              name="q4" value="c"> Television</label>
+        </div>
+        <div class="question">
+          <h4>5. What does a bank do?</h4> <label><input type="radio" name="q5" value="a"> Gives you free money</label>
+          <label><input type="radio" name="q5" value="b"> Helps manage your money</label> <label><input type="radio"
+              name="q5" value="c"> Sells groceries</label>
+        </div> <button type="button" class="submit-btn" onclick="checkAnswers()">Submit Quiz</button>
+        <div class="result" id="result"></div>
+      </form>
+    </div>
+  </div>
+  <footer>
+    <p>© 2025 FinLit Bharat. Empowering Rural India Financially.</p>
+  </footer>
+  <script> function checkAnswers() { const answers = { q1: 'c', q2: 'b', q3: 'b', q4: 'a', q5: 'b' }; let score = 0; for (let i = 1; i <= 5; i++) { const selected = document.querySelector(`input[name="q${i}"]:checked`); if (selected && selected.value === answers[`q${i}`]) { score++; } } document.getElementById("result").innerText = `You scored ${score} out of 5!`; } </script>
+</body>
+
+</html>

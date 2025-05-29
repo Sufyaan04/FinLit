@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Choose Language | FinLit Bharat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #fff8dc, #e0ffe0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2e8b57;
+    }
+
+    select {
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 1rem;
+      margin: 20px;
+    }
+
+    .btn {
+      background-color: #2e8b57;
+      color: white;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #256d48;
+    }
+  </style>
+</head>
+<body onload="speakPrompt()">
+  <h1>Choose Your Language</h1>
+  <p style="color: #555;">Select your preferred language to continue</p>
+
+  <select id="language-select">
+    <option value="en-IN">English</option>
+    <option value="hi-IN">हिन्दी (Hindi)</option>
+    <option value="te-IN">తెలుగు (Telugu)</option>
+    <option value="ta-IN">தமிழ் (Tamil)</option>
+    <option value="bn-IN">বাংলা (Bengali)</option>
+    <option value="mr-IN">मराठी (Marathi)</option>
+    <option value="gu-IN">ગુજરાતી (Gujarati)</option>
+    <option value="kn-IN">ಕನ್ನಡ (Kannada)</option>
+    <option value="ml-IN">മലയാളം (Malayalam)</option>
+  </select>
+
+  <button class="btn" onclick="proceed()">Proceed</button>
+
+  <script>
+    function speakPrompt() {
+      if ('speechSynthesis' in window) {
+        const msg = new SpeechSynthesisUtterance("Please select your language to continue.");
+        msg.lang = 'en-IN';
+        speechSynthesis.speak(msg);
+      }
+    }
+
+    function proceed() {
+      const selectedLang = document.getElementById('language-select').value;
+      localStorage.setItem('lang', selectedLang); // Store selected lang
+      window.location.href = 'home.html';
+    }
+  </script>
+</body>
+</html>

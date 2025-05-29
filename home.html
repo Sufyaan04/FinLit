@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinLit Bharat | Learn Financial Literacy</title>
+  <meta name="google" content="notranslate">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fff8dc 0%, #e0ffe0 100%);
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2e8b57;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-link:hover {
+      background: linear-gradient(45deg, #2e8b57, #32cd32);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: #2e8b57;
+      margin: 4px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    /* Language and Accessibility Bar */
+    .utility-bar {
+      position: fixed;
+      top: 90px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .utility-btn {
+      background: linear-gradient(45deg, #2e8b57, #32cd32);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .utility-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 10px rgba(46, 139, 87, 0.3);
+    }
+
+    /* Language Dropdown Styles */
+    .language-dropdown {
+      position: relative;
+      display: inline-block;
+      top: 90px;
+      right: 20px;
+      float: right;  
+      z-index: 999; 
+    }
+
+    .language-select {
+      background: linear-gradient(45deg, #2e8b57, #32cd32);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      min-width: 120px;
+      text-align: left;
+      position: relative;
+    }
+
+    .language-select:hover {
+      transform: scale(1.05);
+      box-shadow: 0 2px 10px rgba(46, 139, 87, 0.3);
+    }
+
+    .language-options {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      min-width: 200px;
+      z-index: 1001;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid rgba(46, 139, 87, 0.2);
+    }
+
+    .language-options.show {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .language-option {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    .language-option:hover {
+      background: rgba(46, 139, 87, 0.1);
+    }
+
+    .language-option:last-child {
+      border-bottom: none;
+    }
+
+    .language-option.selected {
+      background: rgba(46, 139, 87, 0.2);
+      font-weight: 600;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      margin-top: 100px;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      color: #2e8b57;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      color: #555;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Cards Container */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      justify-items: center;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      width: 100%;
+      max-width: 380px;
+      border-radius: 25px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      /* cursor: pointer; */ /* Removed cursor pointer from card as it's now wrapped in anchor tag */
+      text-align: center;
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* New style for anchor tag around the card to remove default link styling */
+    .card-link {
+      text-decoration: none; /* Remove underline */
+      color: inherit; /* Inherit color from parent */
+      display: block; /* Make the anchor tag a block element to wrap the card */
+      height: 100%; /* Ensure the anchor tag takes full height of the card */
+    }
+
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(45deg, #2e8b57, #32cd32, #ff6b6b, #4ecdc4);
+      background-size: 300% 300%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(46, 139, 87, 0.2);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .card-icon {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(45deg, #2e8b57, #32cd32);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: white;
+      box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 12px 35px rgba(46, 139, 87, 0.4);
+    }
+
+    .card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .card h3 {
+      color: #2e8b57;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .card-button {
+      background: linear-gradient(45deg, #2e8b57, #32cd32);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(46, 139, 87, 0.3);
+    }
+
+    .card-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46, 139, 87, 0.4);
+    }
+
+    /* Progress Indicator */
+    .progress-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 3rem 2rem;
+      /* margin: 2rem 0; */
+    }
+
+    .progress-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .progress-title {
+      font-size: 2.5rem;
+      color: #2e8b57;
+      margin-bottom: 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2rem;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #2e8b57;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      color: #666;
+      margin-top: 0.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, #1e5f3d 0%, #2e8b57 100%);
+      color: #fff;
+      padding: 3rem 1.5rem 1.5rem;
+      margin-top: 5rem;
+      position: relative;
+      font-size: 1rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex; /* Changed to flex for horizontal layout */
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      justify-content: space-around; /* Distribute items evenly */
+      gap: 2.5rem; /* Gap between sections */
+      margin-bottom: 2rem;
+      text-align: left; /* Align text to left for horizontal layout */
+    }
+
+    .footer-section {
+      flex: 1; /* Allow sections to grow and shrink */
+      min-width: 200px; /* Minimum width for each section */
+    }
+
+    .footer-section h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #fff;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #4ade80;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section li {
+      margin-bottom: 0.7rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.97rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+      padding-left: 0;
+    }
+
+    .footer-section a:hover {
+      color: #4ade80;
+      text-decoration: underline;
+    }
+
+    .footer-section.about p {
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 0.7rem;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.25rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .social-links a:hover {
+      background: #4ade80;
+      color: #1e5f3d;
+      transform: translateY(-3px) scale(1.07);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.13);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.93rem;
+    }
+
+    /* Google Translate Styles */
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+
+    body {
+      top: 0px !important;
+    }
+
+    .goog-logo-link,
+    .goog-te-gadget {
+      display: none !important;
+    }
+
+    .goog-te-gadget-icon {
+      display: none !important;
+    }
+
+    .goog-te-menu-value {
+      display: none !important;
+    }
+
+    .goog-te-combo {
+      display: none !important;
+    }
+
+    #google_translate_element {
+      display: none !important;
+    }
+
+    /* Hide Google Translate banner */
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+
+    body {
+      top: 0px !important;
+    }
+
+    /* Hide Translate toolbar */
+    #goog-gt-tt,
+    .goog-te-balloon-frame,
+    .goog-text-highlight {
+      display: none !important;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        padding: 2rem 1rem;
+        gap: 2rem;
+      }
+
+      .card {
+        max-width: 100%;
+      }
+
+      .utility-bar {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 1rem;
+        width: calc(100% - 2rem);
+      }
+
+      .language-options {
+        right: auto;
+        left: 0;
+        width: 100%;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-content {
+        flex-direction: column; /* Stack vertically on small screens */
+        align-items: center; /* Center items when stacked */
+        gap: 1.5rem;
+      }
+
+      .footer-section {
+        text-align: center; /* Center text for stacked sections */
+      }
+
+      .social-links {
+        justify-content: center; /* Center social links when stacked */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+  <script type="text/javascript"> function googleTranslateElementInit() { new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,hi,te,ta,kn,ml,pa,gu,mr,bn', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false }, 'google_translate_element'); } </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body>
+  <div id="google_translate_element"></div> <nav class="navbar">
+    <div class="nav-container"> <a href="#" class="nav-logo">📚 FinLit Bharat</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#" class="nav-link">🏠 Home</a></li>
+        <li><a href="#" class="nav-link">📖 Learn</a></li>
+        <li><a href="#" class="nav-link">🔍 Explore</a></li>
+        <li><a href="#" class="nav-link">🔧 Tools</a></li>
+        <li><a href="#" class="nav-link">📞 Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger"> <span></span> <span></span> <span></span> </div>
+    </div>
+  </nav>
+  <div class="language-dropdown"> <button class="language-select" onclick="toggleLanguageDropdown()" id="languageButton"
+      title="Change Language"> 🌐 English </button>
+    <div class="language-options" id="languageOptions">
+      <div class="language-option selected" onclick="selectLanguage('en', 'English')">🇬🇧 English</div>
+      <div class="language-option" onclick="selectLanguage('hi', 'हिन्दी')">🇮🇳 हिन्दी (Hindi)</div>
+      <div class="language-option" onclick="selectLanguage('te', 'తెలుగు')">🇮🇳 తెలుగు (Telugu)</div>
+      <div class="language-option" onclick="selectLanguage('ta', 'தமிழ்')">🇮🇳 தமிழ் (Tamil)</div>
+      <div class="language-option" onclick="selectLanguage('kn', 'ಕನ್ನಡ')">🇮🇳 ಕನ್ನಡ (Kannada)</div>
+      <div class="language-option" onclick="selectLanguage('ml', 'മലയാളം')">🇮🇳 മലയാളം (Malayalam)</div>
+      <div class="language-option" onclick="selectLanguage('pa', 'ਪੰਜਾਬੀ')">🇮🇳 ਪੰਜਾਬੀ (Punjabi)</div>
+      <div class="language-option" onclick="selectLanguage('gu', 'ગુજરાતી')">🇮🇳 ગુજરાતી (Gujarati)</div>
+      <div class="language-option" onclick="selectLanguage('mr', 'मराठी')">🇮🇳 मराठी (Marathi)</div>
+      <div class="language-option" onclick="selectLanguage('bn', 'বাংলা')">🇮🇳 বাংলা (Bengali)</div>
+    </div>
+  </div>
+  </div> <section class="hero-section">
+    <div class="hero-content">
+      <h1>Choose Your Learning Path</h1>
+      <p>Explore essential financial topics designed specifically for rural communities. Each lesson is interactive,
+        voice-enabled, and available in your local language.</p>
+    </div>
+  </section> <div class="container">
+    <a href="banking.html" class="card-link">
+      <div class="card">
+        <div class="card-icon"> <img src="bank.png" alt="Banking"
+            onerror="this.style.display='none'; this.parentNode.innerHTML='🏦'" /> </div>
+        <h3>Banking Basics</h3>
+        <p>Learn how to open accounts, use banking services, and understand different types of banks available in rural
+          areas.</p> <button class="card-button">Start Learning</button>
+      </div>
+    </a>
+
+    <a href="smart.html" class="card-link">
+      <div class="card">
+        <div class="card-icon"> <img src="savings.png" alt="Savings"
+            onerror="this.style.display='none'; this.parentNode.innerHTML='💰'" /> </div>
+        <h3>Smart Savings</h3>
+        <p>Discover effective saving strategies, government schemes, and how to grow your money safely over time.</p>
+        <button class="card-button">Start Learning</button>
+      </div>
+    </a>
+
+    <a href="insurance.html" class="card-link">
+      <div class="card">
+        <div class="card-icon"> <img src="insurance.png" alt="Insurance"
+            onerror="this.style.display='none'; this.parentNode.innerHTML='🛡️'" /> </div>
+        <h3>Insurance Protection</h3>
+        <p>Understand different insurance types, crop insurance, health coverage, and how to protect your family's future.
+        </p> <button class="card-button">Start Learning</button>
+      </div>
+    </a>
+
+    <a href="atm.html" class="card-link">
+      <div class="card">
+        <div class="card-icon"> <img src="atm.png" alt="ATM"
+            onerror="this.style.display='none'; this.parentNode.innerHTML='🏧'" /> </div>
+        <h3>ATM & Digital Banking</h3>
+        <p>Step-by-step guide to using ATMs safely, mobile banking, and digital payment methods like UPI.</p> <button
+          class="card-button">Start Learning</button>
+      </div>
+    </a>
+
+    <a href="fraud.html" class="card-link">
+      <div class="card">
+        <div class="card-icon"> <img src="alert.png" alt="Fraud Alert"
+            onerror="this.style.display='none'; this.parentNode.innerHTML='⚠️'" /> </div>
+        <h3>Fraud Prevention</h3>
+        <p>Recognize common scams, protect your personal information, and learn what to do if you become a fraud victim.
+        </p> <button class="card-button">Start Learning</button>
+      </div>
+    </a>
+
+    <a href="loans.html" class="card-link">
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Loans & Credit</h3>
+        <p>Understand different loan types, eligibility criteria, interest rates, and how to build a good credit history.
+        </p> <button class="card-button">Start Learning</button>
+      </div>
+    </a>
+  </div>
+
+  <section class="progress-section">
+    <div class="progress-container">
+      <h2 class="progress-title">Your Learning Journey</h2>
+      <div class="stats-grid">
+        <div class="stat-card"> <span class="stat-number" id="completedLessons">0</span> <span
+            class="stat-label">Lessons Completed</span> </div>
+        <div class="stat-card"> <span class="stat-number">6</span> <span class="stat-label">Topics Available</span>
+        </div>
+        <div class="stat-card"> <span class="stat-number" id="timeSpent">0</span> <span class="stat-label">Minutes
+            Learned</span> </div>
+        <div class="stat-card"> <span class="stat-number">100%</span> <span class="stat-label">Free Content</span>
+        </div>
+      </div>
+    </div>
+  </section> <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h4>FinLit Bharat</h4>
+        <p>Empowering India with essential financial knowledge. Learn, grow, and thrive with FinLit Bharat.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter"><span>🐦</span></a>
+          <a href="#" aria-label="Facebook"><span>📘</span></a>
+          <a href="#" aria-label="Instagram"><span>📸</span></a>
+          <a href="#" aria-label="LinkedIn"><span>💼</span></a>
+        </div>
+      </div>
+      <div class="footer-section links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section support">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Report Issue</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="footer-section contact">
+        <h4>Contact</h4>
+        <ul>
+          <li><span>📧</span> info@finlitbharat.in</li>
+          <li><span>📞</span> +91-12345-67890</li>
+          <li><span>📍</span> New Delhi, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 FinLit Bharat. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    let currentLanguage = 'en';
+    let googleTranslateLoaded = false;
+
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(n =>
+      n.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      })
+    );
+
+    function toggleLanguageDropdown() {
+      const dropdown = document.getElementById('languageOptions');
+      dropdown.classList.toggle('show');
+    }
+
+    document.addEventListener('click', function (event) {
+      const dropdown = document.querySelector('.language-dropdown');
+      if (!dropdown.contains(event.target)) {
+        document.getElementById('languageOptions').classList.remove('show');
+      }
+    });
+
+    function selectLanguage(langCode, langName) {
+      document.getElementById('languageButton').innerHTML = `🌐 ${langName}`;
+      document.querySelectorAll('.language-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      // The `event` object might not be directly available if `selectLanguage` is called without a direct click.
+      // A more robust way is to find the element based on `langCode`.
+      const selectedOption = document.querySelector(`.language-option[onclick*="selectLanguage('${langCode}')"]`);
+      if (selectedOption) {
+        selectedOption.classList.add('selected');
+      }
+
+      document.getElementById('languageOptions').classList.remove('show');
+      currentLanguage = langCode;
+      translatePage(langCode);
+      // For accessibility, if you had a live region:
+      // announceToScreenReader(`Language changed to ${langName}`); 
+    }
+
+    function translatePage(langCode) {
+      if (langCode === 'en') {
+        const googleTranslateCombo = document.querySelector('.goog-te-combo');
+        if (googleTranslateCombo) {
+          googleTranslateCombo.value = 'en';
+          googleTranslateCombo.dispatchEvent(new Event('change'));
+        }
+        return;
+      }
+      const checkGoogleTranslate = setInterval(() => {
+        const googleTranslateCombo = document.querySelector('.goog-te-combo');
+        if (googleTranslateCombo) {
+          clearInterval(checkGoogleTranslate);
+          googleTranslateCombo.value = langCode;
+          googleTranslateCombo.dispatchEvent(new Event('change'));
+        }
+      }, 100);
+      setTimeout(() => clearInterval(checkGoogleTranslate), 10000);
+    }
+
+    // Removed goToTopic function as cards are now direct anchor tags
+  </script>
+</body>
+
+</html>
