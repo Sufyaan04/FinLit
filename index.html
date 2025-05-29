@@ -83,7 +83,6 @@
       transition: 0.3s;
     }
 
-    /* Hero Section */
     .hero {
       margin-top: 80px;
       padding: 4rem 2rem;
@@ -136,7 +135,6 @@
       border-radius: 50%;
     }
 
-    /* Buttons */
     .btn-container {
       display: flex;
       flex-direction: column;
@@ -183,7 +181,6 @@
       font-style: italic;
     }
 
-    /* Features Section */
     .features {
       padding: 4rem 2rem;
       background: rgba(255, 255, 255, 0.1);
@@ -234,7 +231,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Footer */
     .footer {
       background: rgba(46, 139, 87, 0.1);
       padding: 2rem;
@@ -243,7 +239,6 @@
       font-size: 0.9rem;
     }
 
-    /* Accessibility Features */
     .accessibility-bar {
       position: fixed;
       top: 80px;
@@ -266,7 +261,6 @@
       font-size: 0.9rem;
     }
 
-    /* Mobile Responsive */
     @media (max-width: 768px) {
       .nav-menu {
         position: fixed;
@@ -343,7 +337,6 @@
   </style>
 </head>
 <body onload="speakWelcome()">
-  <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="#" class="nav-logo">FinLit Bharat</a>
@@ -362,7 +355,6 @@
     </div>
   </nav>
 
-  <!-- Accessibility Bar -->
   <div class="accessibility-bar">
     <button class="accessibility-btn" onclick="increaseFontSize()">A+</button>
     <button class="accessibility-btn" onclick="decreaseFontSize()">A-</button>
@@ -370,7 +362,6 @@
     <button class="accessibility-btn" onclick="speakPageContent()" title="Read Page Aloud">🔊</button>
   </div>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-content">
       <div class="logo">FinLit Bharat</div>
@@ -392,7 +383,6 @@
     </div>
   </section>
 
-  <!-- Features Section -->
   <section class="features" id="learn">
     <div class="features-container">
       <h2>Why Choose FinLit Bharat?</h2>
@@ -431,14 +421,13 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <p>Made with ❤️ for Bharat | © 2025 FinLit Bharat</p>
     <p>Empowering Rural Communities Through Financial Education</p>
+    <p>Team Alpha , Team Code - 28</p>
   </footer>
 
   <script>
-    // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
 
@@ -447,13 +436,11 @@
       navMenu.classList.toggle('active');
     });
 
-    // Close menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
       hamburger.classList.remove('active');
       navMenu.classList.remove('active');
     }));
 
-    // Voice functionality
     function speakWelcome() {
       if ('speechSynthesis' in window) {
         setTimeout(() => {
@@ -475,7 +462,6 @@
       }
     }
 
-    // Accessibility features
     let fontSize = 16;
     let highContrast = false;
 
@@ -498,7 +484,6 @@
       }
     }
 
-    // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -512,7 +497,6 @@
       });
     });
 
-    // Add loading animation
     window.addEventListener('load', () => {
       document.body.style.opacity = '0';
       document.body.style.transition = 'opacity 0.5s ease';
